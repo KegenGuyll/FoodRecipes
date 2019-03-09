@@ -1,11 +1,11 @@
-.card {
-    background-color: #2a2a2c;
-    color: #ffffff;
-    border-bottom: 5px solid #007bff;
-    border-radius: 5px;
+.blackCardAccount {
+  background-color: #2a2a2c;
+  color: #ffffff;
+  border-bottom: 5px solid #007bff;
+  border-radius: 5px;
 }
 
 .list-group-item {
-    background-color: #2a2a2c;
-    color: #ffffff
+  background-color: #2a2a2c;
+  color: #ffffff;
 }

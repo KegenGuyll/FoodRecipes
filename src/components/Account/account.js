@@ -17,7 +17,7 @@ class Account extends Component {
     return (
       <Container>
         <br />
-        <Card className="black">
+        <Card className="blackCardAccount">
           <Card.Header>
             <Nav variant="pills" defaultActiveKey="#account">
               <Nav.Item>

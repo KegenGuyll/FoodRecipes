@@ -1,0 +1,10 @@
+.blackCard {
+  background-color: #2a2a2c;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+.card-header {
+  font-weight: 500;
+  font-size: 20px;
+}
