@@ -1,27 +1,17 @@
-import React, { Component } from 'react'
-import fire from '../../config/Fire';
-import { Button } from 'react-bootstrap';
+import React, { Component } from "react";
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
-        this.logout = this.logout.bind(this)
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    logout() {
-        fire.auth().signOut();
-    }
-
-    render() {
-        return (
-            <div>
-                <h1>Home</h1>
-                <Button onClick={this.logout}>Logout</Button>
-            </div>
-
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1>Home</h1>
+      </div>
+    );
+  }
 }
-
 
 export default Home;
