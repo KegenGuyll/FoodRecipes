@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import { Row } from "react-bootstrap";
 import config from "../../config/Food2Fork";
 import Recipes from "./recipes";
+import mockData from "../../mockData/recipesMock.json";
 
 class Infinitescroll extends Component {
   state = {
@@ -32,21 +33,26 @@ class Infinitescroll extends Component {
   };
 
   loadRecipe = () => {
-    const { count, page, data } = this.state;
-    const endpoint = `https://www.food2fork.com/api/search?key=${
-      config.key
-    }&page=${page}&count=${count}`;
-    axios
-      .get(endpoint)
-      .then(res => {
-        this.setState(() => ({
-          data: [...data, ...res.data.recipes],
-          scrolling: false
-        }));
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
+    //***Uncomment for Production***
+    // const { count, page, data } = this.state;
+    // const endpoint = `https://www.food2fork.com/api/search?key=${
+    //   config.key
+    // }&page=${page}&count=${count}`;
+    // axios
+    //   .get(endpoint)
+    //   .then(res => {
+    //     this.setState(() => ({
+    //       data: [...data, ...res.data.recipes],
+    //       scrolling: false
+    //     }));
+    //   })
+    //   .catch(err => {
+    //     console.log(err.message);
+    //   });
+    //***Uncomment for Testing***
+    this.setState(() => ({
+      data: [...mockData.recipes]
+    }));
   };
 
   loadMore = () => {
@@ -63,17 +69,15 @@ class Infinitescroll extends Component {
 
   render() {
     return (
-      <div>
-        <ul style={{ display: "inline" }} className="recpies">
-          {this.state.data.map(recipe => {
-            return (
-              <li key={recipe.recipe_id}>
-                <Recipes {...recipe} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <ul style={{ display: "contents" }} className="recpies">
+        {this.state.data.map(recipe => {
+          return (
+            <li key={recipe.recipe_id}>
+              <Recipes {...recipe} />
+            </li>
+          );
+        })}
+      </ul>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { BrowserView, MobileView } from "react-device-detect";
 import {
   FiHome,
@@ -12,15 +12,21 @@ import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import "./navbarStyle.css";
+import fire from "../../config/Fire";
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
     this.goback = this.goback.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   goback() {
     this.props.history.goBack();
+  }
+
+  logout() {
+    fire.auth().signOut();
   }
 
   render() {
@@ -28,24 +34,40 @@ class Navigation extends Component {
       <div>
         <BrowserView>
           <Navbar variant="dark">
-            <Navbar.Brand href="#home">Navbar on Browser</Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-                Signed in as: <a href="#login">Mark Otto</a>
-              </Navbar.Text>
-            </Navbar.Collapse>
+            <Navbar.Brand as={Link} to={"/"}>
+              FoodRecipes
+            </Navbar.Brand>
+            <Nav className="mr-auto">
+              <Nav.Link as={Link} to={"/"}>
+                Home
+              </Nav.Link>
+              <Nav.Link as={Link} to="/search">
+                Search
+              </Nav.Link>
+              <Nav.Link as={Link} to="/favorites">
+                Favorites
+              </Nav.Link>
+            </Nav>
+            <Nav>
+              <Nav.Link as={Link} to="/account">
+                Account
+              </Nav.Link>
+            </Nav>
+            <Nav>
+              <Nav.Link onClick={this.logout}>Logout</Nav.Link>
+            </Nav>
           </Navbar>
+          {this.props.children}
         </BrowserView>
         <MobileView>
           <Navbar expand="md" fixed="top" variant="dark">
-            <IconContext.Provider value={{ color: "white", size: "2em" }}>
+            <IconContext.Provider value={{ color: "white", size: "1.7em" }}>
               <div onClick={this.goback} style={{ paddingLeft: "5px" }}>
                 <FiChevronLeft />
               </div>
             </IconContext.Provider>
             <Link to="/account">
-              <IconContext.Provider value={{ color: "white", size: "2em" }}>
+              <IconContext.Provider value={{ color: "white", size: "1.7em" }}>
                 {this.props.location.pathname.includes("/account") ? (
                   <div style={{ paddingBottom: "5px", paddingTop: "5px" }}>
                     <div className="bottomBorderDashboard">
@@ -65,7 +87,7 @@ class Navigation extends Component {
           </div>
           <Navbar expand="md" fixed="bottom" variant="dark">
             <Link to="/">
-              <IconContext.Provider value={{ color: "white", size: "2.5em" }}>
+              <IconContext.Provider value={{ color: "white", size: "1.7em" }}>
                 {this.props.location.pathname === "/" ? (
                   <div style={{ paddingLeft: "30px", paddingTop: "10px" }}>
                     <div className="bottomBorderDashboard">
@@ -80,7 +102,7 @@ class Navigation extends Component {
               </IconContext.Provider>
             </Link>
             <Link to="/search">
-              <IconContext.Provider value={{ color: "white", size: "2.5em" }}>
+              <IconContext.Provider value={{ color: "white", size: "1.7em" }}>
                 {this.props.location.pathname.includes("/search") ? (
                   <div style={{ paddingTop: "10px" }}>
                     <div className="bottomBorderDashboard">
@@ -95,7 +117,7 @@ class Navigation extends Component {
               </IconContext.Provider>
             </Link>
             <Link to="/favorites">
-              <IconContext.Provider value={{ color: "white", size: "2.5em" }}>
+              <IconContext.Provider value={{ color: "white", size: "1.7em" }}>
                 {this.props.location.pathname.includes("/favorites") ? (
                   <div style={{ paddingRight: "30px", paddingTop: "10px" }}>
                     <div className="bottomBorderDashboard">
