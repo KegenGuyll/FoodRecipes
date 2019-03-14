@@ -1,6 +1,5 @@
 const config = {
-  //use Food2Fork api key
-  key: ""
+  key: "2af3e681e7cef860efc6392c202f978b"
 };
 
 export default config;

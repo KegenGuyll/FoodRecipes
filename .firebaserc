@@ -1,5 +1,6 @@
 {
   "projects": {
-    "foodrecipes": "foodrecipes-548"
+    "foodrecipes": "foodrecipes-548",
+    "default": "foodrecipes-548"
   }
 }

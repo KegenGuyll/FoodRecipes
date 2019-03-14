@@ -6,7 +6,8 @@ import Account from "./components/Account/account";
 import Favorites from "./components/Favorites/favorites";
 import Search from "./components/Search/search";
 import "./App.css";
-
+import firebase from "firebase";
+const messaging = firebase.messaging();
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +18,16 @@ class App extends Component {
 
   componentDidMount() {
     this.setState(() => ({ user: this.props.user }));
+    messaging.onTokenRefresh(() => {
+      messaging.getToken().then(() => {
+        console.log("Token refreshed");
+      });
+    });
+    try {
+      messaging.onMessage(payload => {
+        console.log("Message received. ", payload);
+      });
+    } catch {}
   }
 
   render() {

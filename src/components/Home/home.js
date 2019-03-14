@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Infinitescroll from "../Common/Infinitescroll";
+import Notification from "../Notification/notification";
 import "./homeStyle.css";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -10,9 +11,14 @@ class Home extends Component {
 
   render() {
     return (
-      <Container>
-        <Infinitescroll />
-      </Container>
+      // <Container>
+      //   <Row>
+      //     <Col>
+      //      // <Infinitescroll />
+      //     </Col>
+      //   </Row>
+      // </Container>
+      <h1>Home</h1>
     );
   }
 }
