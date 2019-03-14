@@ -33,10 +33,7 @@ exports.PushNotification = functions.https.onRequest((request, res) => {
     .then(response => {
       // Response is a message ID string.
       console.log("Successfully sent message:", response);
-      res.send(
-        `MESSAGE RESPONCE: ${JSON.stringify(
-          responce
-        )}, TOKEN: ${registrationToken}`
+      res.send(`MESSAGE response: ${JSON.stringify(response)}, TOKEN: ${registrationToken}`
       );
       return response;
     })
